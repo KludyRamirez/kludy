@@ -1,6 +1,7 @@
+import { FaLinkedinIn } from "react-icons/fa6";
 import "./App.css";
 import { useTheme } from "./hooks/useTheme";
-import { BsCalendar2, BsChevronRight, BsWindow } from "react-icons/bs";
+import { BsChevronRight, BsTelephone, BsWindow } from "react-icons/bs";
 
 function App() {
   const { theme, toggle } = useTheme();
@@ -54,14 +55,23 @@ function App() {
         className="flex justify-center max-w-3xl w-full text-[var(--btn-text)]"
       >
         <div className="w-[50%] flex flex-col justify-start items-start gap-1.5">
-          <div className="text-2xl">Kludy Ramirez</div>
-          <div className="text-sm ml-0.5">
-            Tech Ops Lead at Bolt Farm Treehouse
+          <div className="text-2xl font-['Cormorant_Garamond']">
+            Kludy Ramirez
           </div>
-          <div className="flex justify-center items-center gap-2 mt-1.5 py-1.5 px-3 bg-[var(--btn-bg)] border border-[var(--border)] text-xs cursor-pointer rounded">
-            <BsCalendar2 />
-            <span className="ml-1">Schedule a Call</span>
-            <BsChevronRight />
+          <div className="text-sm ml-0.5">
+            AI and Tech Ops Lead @ Bolt Farm Treehouse
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="flex justify-center items-center gap-2 mt-1.5 py-1.5 px-3 bg-[var(--btn-bg)] border border-[var(--border)] text-xs cursor-pointer rounded">
+              <BsTelephone />
+              <span className="ml-0.5">Schedule a Call</span>
+              <BsChevronRight />
+            </div>
+            <div className="flex justify-center items-center gap-2 mt-1.5 py-1.5 px-3 bg-[#0a66c2] border border-[#0a66c2] text-xs text-white cursor-pointer rounded">
+              <FaLinkedinIn />
+              <span className="ml-0.5">Visit my LinkedIn</span>
+              <BsChevronRight />
+            </div>
           </div>
         </div>
         <div className="w-[50%] flex flex-col justify-start items-end gap-1">
