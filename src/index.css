@@ -32,6 +32,186 @@
   box-sizing: border-box;
 }
 
+.face-svg {
+  color: var(--text-h);
+  animation: face-float 5s ease-in-out infinite;
+}
+
+@keyframes face-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(3deg);
+  }
+}
+
+.face-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: face-blink 4s ease-in-out infinite;
+}
+
+@keyframes face-blink {
+  0%,
+  90%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+.face-mouth {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: face-smile 4s ease-in-out infinite;
+}
+
+@keyframes face-smile {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.35);
+  }
+}
+
+.doodle-twinkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: doodle-twinkle 2.4s ease-in-out infinite;
+}
+
+@keyframes doodle-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes doodle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.lab-svg {
+  color: var(--text-h);
+  animation: doodle-float 5s ease-in-out infinite;
+}
+
+.lab-bubble {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lab-bubble 2.6s ease-in-out infinite;
+}
+
+@keyframes lab-bubble {
+  0% {
+    transform: translateY(7px) scale(0.4);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-15px) scale(1);
+    opacity: 0;
+  }
+}
+
+.work-svg {
+  color: var(--text-h);
+  animation: doodle-float 5s ease-in-out infinite;
+}
+
+.work-gear {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: work-spin 7s linear infinite;
+}
+
+.work-gear-rev {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: work-spin 7s linear infinite reverse;
+}
+
+@keyframes work-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.code-svg {
+  color: var(--text-h);
+  animation: doodle-float 5s ease-in-out infinite;
+}
+
+.code-type {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: code-type 3s steps(12, end) infinite;
+}
+
+@keyframes code-type {
+  0% {
+    transform: scaleX(0);
+  }
+  60%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.code-caret {
+  animation: code-blink 1s steps(1, end) infinite;
+}
+
+@keyframes code-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .face-svg,
+  .face-eye,
+  .face-mouth,
+  .lab-svg,
+  .lab-bubble,
+  .work-svg,
+  .work-gear,
+  .work-gear-rev,
+  .code-svg,
+  .code-type,
+  .code-caret,
+  .doodle-twinkle {
+    animation: none;
+  }
+}
+
 body {
   margin: 0;
   background: var(--bg);
