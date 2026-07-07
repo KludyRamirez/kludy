@@ -265,12 +265,13 @@ function AboutMe() {
       <div className="flex flex-col items-start gap-5">
         <span className="text-xl">Who am I</span>
         <span className="text-sm leading-relaxed">
-          I am an AI Ops Engineer at Bolt Farm Treehouse where I simplify
-          technology systems. Using a mix of coding and AI automation, I turn
-          disorganized tools into a smooth, high-performing setup. Whether I'm
-          moving data or eliminating repetitive tasks, my goal is to make sure
-          our technology just works behind the scenes so the business can grow
-          faster and smarter.
+          I'm an AI Ops Engineer at Bolt Farm Treehouse, where Claude Code is my
+          primary engineering tool. I take scattered, disconnected tools such as
+          booking, CRM, tracking, guest comms and turn them into one smooth,
+          high-performing system: shipping features spec-first, automating data
+          flows, and replacing repetitive work with agentic workflows. My goal
+          is technology that just works behind the scenes, so the business can
+          grow faster and smarter.
         </span>
       </div>
       <div className="flex flex-col items-start gap-5 mt-5">
@@ -284,11 +285,11 @@ function AboutMe() {
       <div className="flex flex-col items-start gap-5 mt-5">
         <span className="text-xl">What I'm looking for</span>
         <span className="text-sm leading-relaxed">
-          Seeking Senior level AI leadership or the right co-founder to launch a
-          new venture. Focused on building high-impact tech with serious teams
-          who embrace the chaos of scaling. Deep expertise in agent
-          infrastructure, memory systems, and distributed AI, with strong
-          opinions on critical build-vs-buy decisions.
+          I'm looking for a senior AI leadership role, or the right co-founder
+          to start something new. I want to build high-impact products with
+          serious teams that welcome the chaos of scaling. I bring deep
+          experience in agent infrastructure, memory systems, and distributed
+          AI, plus strong opinions on when to build and when to buy.
         </span>
       </div>
 
@@ -312,18 +313,14 @@ function AboutMe() {
             <div className="flex flex-col items-start gap-5">
               <span className="text-xl">More about me</span>
               <span className="text-sm leading-relaxed">
-                I got my start building a student affairs system for a
-                university in Valenzuela and corporate websites for AIA in
-                Makati, then cut my teeth on regulated online gaming platforms
-                at Flexicon — growing from intern to one of the engineers
-                trusted with the sensitive, can't-fail work. Today I work
-                remotely from Manila with a US-based team at Bolt Farm
-                Treehouse, which has made me obsessive about clear
-                communication, good documentation, and letting shipped work
-                speak across time zones. Off the clock, you'll usually find me
-                experimenting with new AI tools, rebuilding my own workflows,
-                or turning small daily annoyances into automations nobody asked
-                for — my favorite kind of project.
+                I got my start building a student affairs system in Valenzuela
+                and corporate websites for AIA in Makati, then grew from intern
+                to a trusted engineer on regulated gaming platforms at
+                Flexicon. Working remotely from Manila with a US team has made
+                me obsessive about clear communication and letting shipped work
+                speak across time zones. Off the clock, I experiment with new
+                AI tools and turn small daily annoyances into automations
+                nobody asked for.
               </span>
             </div>
           </div>
@@ -362,10 +359,11 @@ const WORK: Job[] = [
     period: "Nov 2025 – Present · 9 mos",
     location: "Whitwell · Tennessee · USA (Remote)",
     points: [
-      "Spearheaded the AI-assisted development of BoltOS, a custom booking and dynamic pricing platform, aligning technical execution with revenue operations to support $9.4 million in booking volume and improve guest booking efficiency by 86%.",
+      "Spearheaded the development of BoltOS, a custom booking and dynamic pricing platform, with Claude Code as the primary engineering tool — turning specs into production reservation, role-based access, and guest-experience features that support $9.4 million in booking volume and improved guest booking efficiency by 86%.",
       "Architected and deployed a server-side Google Tag Manager infrastructure on Google Cloud Run with Cloudflare DNS, boosting data tracking reliability across GA4 and Meta Pixel by 80% while eliminating client-side data loss.",
-      "Engineered automated QA workflows to resolve a critical Facebook Pixel conflict between PixelFlow and HubSpot, eliminating double-counted Purchase events and restoring accurate attribution for $2.5M in annual ad spend.",
-      "Scaled and optimized CRM architecture by auditing 272 complex workflows and engineering automated deal pipelines, integrating Zapier, Aircall, and CallRail to improve data accuracy and accelerate sales velocity by 90%.",
+      "Engineered agentic QA workflows in Claude Code to diagnose and resolve a critical Facebook Pixel conflict between PixelFlow and HubSpot, eliminating double-counted Purchase events and restoring accurate attribution for $2.5M in annual ad spend.",
+      "Audited 272 complex CRM workflows using AI-assisted analysis and rebuilt them into automated deal pipelines integrating Zapier, Aircall, and CallRail — improving data accuracy and accelerating sales velocity by 90%.",
+      "Migrated legacy guest-messaging and operations trackers into BoltOS with AI-driven data-parity checks, and built internal Claude Code plugins that automate the team's support-ticket workflows.",
     ],
     tech: [
       { name: "Claude Code", icon: <SiClaude /> },
@@ -449,7 +447,7 @@ const jobYears = (period: string) => {
 function WorkExperience() {
   const [year, setYear] = useState("all");
   const years = [...new Set(WORK.flatMap((job) => jobYears(job.period)))].sort(
-    (a, b) => b - a
+    (a, b) => b - a,
   );
   const filtered =
     year === "all"
@@ -1340,7 +1338,7 @@ const SEARCH_INDEX: SearchEntry[] = [
     title: post.title,
     detail: post.excerpt,
     haystack: [post.title, post.excerpt, ...post.tags, ...post.content].join(
-      " "
+      " ",
     ),
     slug: slugify(post.title),
   })),
@@ -1348,9 +1346,12 @@ const SEARCH_INDEX: SearchEntry[] = [
     tab: "Reviews" as Tab,
     title: review.author,
     detail: `${review.position} · ${review.company}`,
-    haystack: [review.author, review.quote, review.position, review.company].join(
-      " "
-    ),
+    haystack: [
+      review.author,
+      review.quote,
+      review.position,
+      review.company,
+    ].join(" "),
   })),
   ...TECH_STACK.flatMap((group) =>
     group.items.map((tech) => ({
@@ -1358,7 +1359,7 @@ const SEARCH_INDEX: SearchEntry[] = [
       title: tech.name,
       detail: group.category,
       haystack: `${tech.name} ${group.category}`,
-    }))
+    })),
   ),
 ];
 
@@ -1385,9 +1386,7 @@ function SearchModal({
 
   const q = query.trim().toLowerCase();
   const results = q
-    ? SEARCH_INDEX.filter((entry) =>
-        entry.haystack.toLowerCase().includes(q)
-      )
+    ? SEARCH_INDEX.filter((entry) => entry.haystack.toLowerCase().includes(q))
         .sort((a, b) => {
           const aTitle = a.title.toLowerCase().includes(q) ? 0 : 1;
           const bTitle = b.title.toLowerCase().includes(q) ? 0 : 1;
@@ -1474,6 +1473,78 @@ function SearchModal({
         )}
       </div>
     </div>
+  );
+}
+
+function RssPage() {
+  const [copied, setCopied] = useState(false);
+  const feedUrl = `${window.location.origin}/rss.xml`;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const copyFeedUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(feedUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.prompt("Copy the feed URL:", feedUrl);
+    }
+  };
+
+  return (
+    <main className="min-h-screen bg-[var(--bg)] text-[var(--text)] flex flex-col items-center justify-start">
+      <article className="flex flex-col items-start max-w-3xl w-full text-[var(--btn-text)] mt-12 mb-14 flex-1">
+        <Link
+          to="/"
+          className="flex items-center gap-1.5 text-xs text-[var(--text)] hover:text-[var(--text-h)] transition-colors"
+        >
+          <BsArrowLeft />
+          <span className="mt-[1px]">Back to home</span>
+        </Link>
+
+        <h1 className="text-2xl font-bold text-[var(--text-h)] leading-tight mt-10">
+          RSS Feed
+        </h1>
+        <span className="text-sm leading-relaxed mt-3">
+          Follow my writing in any feed reader. Copy the feed URL below and
+          paste it into your reader to subscribe.
+        </span>
+
+        <div className="flex flex-wrap items-center gap-2 mt-6">
+          <code className="py-1.5 px-3 bg-[var(--btn-bg)] border border-[var(--border)] text-xs rounded">
+            {feedUrl}
+          </code>
+          <button
+            onClick={copyFeedUrl}
+            className="flex justify-center items-center gap-2 py-1.5 px-3 bg-[var(--btn-bg)] border border-[var(--border)] text-xs cursor-pointer rounded"
+          >
+            {copied ? "Copied!" : "Copy URL"}
+          </button>
+          <a
+            href="/rss.xml"
+            target="_blank"
+            rel="noreferrer"
+            className="flex justify-center items-center gap-2 py-1.5 px-3 bg-[var(--btn-bg)] border border-[var(--border)] text-xs cursor-pointer rounded"
+          >
+            <span>Open raw XML</span>
+            <BsChevronRight />
+          </a>
+        </div>
+
+        <div className="w-full flex flex-col gap-4 mt-12 pt-8 border-t border-[var(--border)]">
+          <span className="text-xs text-[var(--text)] tracking-wide">
+            Posts in this feed
+          </span>
+          {BLOG_POSTS.map((post) => (
+            <BlogTile key={post.title} post={post} />
+          ))}
+        </div>
+      </article>
+      <Footer />
+    </main>
   );
 }
 
@@ -1625,10 +1696,8 @@ function Home() {
             </>
           )}
         </button>
-        <a
-          href="/rss.xml"
-          target="_blank"
-          rel="noreferrer"
+        <Link
+          to="/rss"
           aria-label="RSS feed"
           title="RSS feed"
           className="flex items-center p-2 rounded-full text-sm font-medium border border-[var(--border)] bg-[var(--bg)] text-[var(--text-h)] hover:shadow-[var(--shadow)] transition-shadow duration-300 cursor-pointer"
@@ -1649,7 +1718,7 @@ function Home() {
             <path d="M4 4a16 16 0 0 1 16 16" />
             <circle cx="5" cy="19" r="1" />
           </svg>
-        </a>
+        </Link>
       </nav>
 
       <section
@@ -1756,6 +1825,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/blog/:slug" element={<BlogPostPage />} />
+      <Route path="/rss" element={<RssPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
