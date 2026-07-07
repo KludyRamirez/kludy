@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, Route, Routes, useParams } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { FaLinkedinIn, FaWebflow } from "react-icons/fa6";
 import "./App.css";
 import { useTheme } from "./hooks/useTheme";
@@ -21,6 +28,7 @@ import {
   BsArrowUpRight,
   BsArrowLeft,
   BsTwitterX,
+  BsSearch,
 } from "react-icons/bs";
 import { FaTripadvisor, FaJava, FaAws } from "react-icons/fa";
 import {
@@ -206,6 +214,49 @@ function SocialButtons() {
   );
 }
 
+function SectionHeader({
+  title,
+  subtitle,
+  years,
+  year,
+  onYearChange,
+}: {
+  title: string;
+  subtitle: string;
+  years?: number[];
+  year?: string;
+  onYearChange?: (year: string) => void;
+}) {
+  return (
+    <div className="flex justify-between items-start gap-4 mb-10">
+      <div className="flex flex-col gap-1.5">
+        <h3 className="text-xl text-[var(--text-h)]">{title}</h3>
+        <span className="text-sm text-[var(--text)] leading-relaxed">
+          {subtitle}
+        </span>
+      </div>
+      {years && years.length > 0 && (
+        <div className="relative shrink-0">
+          <select
+            value={year}
+            onChange={(e) => onYearChange?.(e.target.value)}
+            aria-label={`Filter ${title} by year`}
+            className="appearance-none py-1.5 pl-3 pr-8 bg-[var(--btn-bg)] border border-[var(--border)] text-xs text-[var(--btn-text)] rounded cursor-pointer focus:outline-none"
+          >
+            <option value="all">All time</option>
+            {years.map((y) => (
+              <option key={y} value={String(y)}>
+                {y}
+              </option>
+            ))}
+          </select>
+          <BsChevronDown className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[11px] text-[var(--text)]" />
+        </div>
+      )}
+    </div>
+  );
+}
+
 function AboutMe() {
   const [showMore, setShowMore] = useState(false);
 
@@ -383,18 +434,39 @@ const WORK: Job[] = [
   },
 ];
 
+const jobYears = (period: string) => {
+  const matched = (period.match(/\d{4}/g) ?? []).map(Number);
+  if (matched.length === 0) return [];
+  const start = Math.min(...matched);
+  const end = /present/i.test(period)
+    ? new Date().getFullYear()
+    : Math.max(...matched);
+  const years: number[] = [];
+  for (let y = start; y <= end; y++) years.push(y);
+  return years;
+};
+
 function WorkExperience() {
+  const [year, setYear] = useState("all");
+  const years = [...new Set(WORK.flatMap((job) => jobYears(job.period)))].sort(
+    (a, b) => b - a
+  );
+  const filtered =
+    year === "all"
+      ? WORK
+      : WORK.filter((job) => jobYears(job.period).includes(Number(year)));
+
   return (
     <div>
-      <div className="flex flex-col gap-1.5 mb-10">
-        <h3 className="text-xl text-[var(--text-h)]">My Career</h3>
-        <span className="text-sm text-[var(--text)] leading-relaxed">
-          A look at where I've built systems, shipped features, and grown as an
-          engineer.
-        </span>
-      </div>
+      <SectionHeader
+        title="My Career"
+        subtitle="A look at where I've built systems, shipped features, and grown as an engineer."
+        years={years}
+        year={year}
+        onYearChange={setYear}
+      />
       <div className="flex flex-col gap-12">
-        {WORK.map((job) => (
+        {filtered.map((job) => (
           <div
             key={job.company}
             className="flex flex-col items-start gap-1 text-[var(--btn-text)]"
@@ -441,6 +513,7 @@ type Project = {
   image: string;
   url: string;
   github?: string;
+  year: number;
   tech: Tech[];
 };
 
@@ -474,6 +547,7 @@ const GALATIC_TECH: Tech[] = [
 const PROJECTS: Project[] = [
   {
     title: "Mathematrix",
+    year: 2024,
     description:
       "This web application is a thesis project designed for students with an interest in mathematics, particularly in rational functions.",
     image:
@@ -484,6 +558,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "BPI-AIA",
+    year: 2023,
     description:
       "The website covers insurance plans, company info, wellness programs, and support.",
     image:
@@ -493,6 +568,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "AIA Philippines",
+    year: 2023,
     description:
       "The website covers insurance plans, company info, wellness programs, and support.",
     image:
@@ -502,6 +578,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "AIA Thailand",
+    year: 2023,
     description:
       "The website covers insurance plans, company info, wellness programs, and support.",
     image:
@@ -511,6 +588,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "PLV OSA Reprimand Hub",
+    year: 2024,
     description:
       "A web-based digital hub where the pamantasan can handle student cases, offenses, and violations.",
     image:
@@ -521,6 +599,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "MLAC",
+    year: 2024,
     description:
       "A web-based application for MLAC parents to manage their children's weekly therapy attendance.",
     image:
@@ -531,6 +610,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "APD - GrowthOps Technical Exam",
+    year: 2023,
     description:
       "Technical assessment at GrowthOps, building components and retrieving data from a web service.",
     image:
@@ -546,6 +626,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "Galatic Technical Exam 1",
+    year: 2024,
     description:
       "This is the first part of the technical exam from Galatic. The purpose of this exam is to assess my front-end development skills and principles.",
     image:
@@ -557,6 +638,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "Galatic Technical Exam 2",
+    year: 2024,
     description:
       "This is the second part of the technical exam from Galatic. The purpose of this exam is to assess my front-end development skills and principles.",
     image:
@@ -568,6 +650,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "Registration Page Project",
+    year: 2024,
     description:
       "A registration page built on Nuxt 2 for Galatic Events Corporation.",
     image:
@@ -647,53 +730,63 @@ function ProjectCard({ project }: { project: Project }) {
 
 function Projects() {
   const [showMore, setShowMore] = useState(false);
-  const visible = PROJECTS.slice(0, 4);
-  const more = PROJECTS.slice(4);
+  const [year, setYear] = useState("all");
+  const years = [...new Set(PROJECTS.map((p) => p.year))].sort((a, b) => b - a);
+  const filtered =
+    year === "all" ? PROJECTS : PROJECTS.filter((p) => p.year === Number(year));
+  const visible = filtered.slice(0, 4);
+  const more = filtered.slice(4);
 
   return (
     <div>
-      <div className="flex flex-col gap-1.5 mb-10">
-        <h3 className="text-xl text-[var(--text-h)]">My Projects</h3>
-        <span className="text-sm text-[var(--text)] leading-relaxed">
-          Things I've designed, built, and shipped — from thesis work to
-          production sites.
-        </span>
-      </div>
+      <SectionHeader
+        title="My Projects"
+        subtitle="Things I've designed, built, and shipped — from thesis work to production sites."
+        years={years}
+        year={year}
+        onYearChange={setYear}
+      />
       <div className="grid grid-cols-2 gap-4">
         {visible.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}
       </div>
 
-      <div
-        className={`grid transition-all duration-500 ease-in-out ${
-          showMore
-            ? "grid-rows-[1fr] opacity-100"
-            : "grid-rows-[0fr] opacity-0 pointer-events-none"
-        }`}
-        aria-hidden={!showMore}
-      >
-        <div className="overflow-hidden min-h-0">
-          <div className="grid grid-cols-2 gap-4 pt-4">
-            {more.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
+      {more.length > 0 && (
+        <>
+          <div
+            className={`grid transition-all duration-500 ease-in-out ${
+              showMore
+                ? "grid-rows-[1fr] opacity-100"
+                : "grid-rows-[0fr] opacity-0 pointer-events-none"
+            }`}
+            aria-hidden={!showMore}
+          >
+            <div className="overflow-hidden min-h-0">
+              <div className="grid grid-cols-2 gap-4 pt-4">
+                {more.map((project) => (
+                  <ProjectCard key={project.title} project={project} />
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <button
-        onClick={() => setShowMore((v) => !v)}
-        aria-expanded={showMore}
-        className="flex items-center gap-1.5 mx-auto mt-13 mb-7 text-xs text-[var(--text)] hover:text-[var(--text-h)] transition-colors cursor-pointer"
-      >
-        <span className="mt-[1px]">{showMore ? "Show less" : "Show more"}</span>
-        <BsChevronDown
-          className={`transition-transform duration-300 ${
-            showMore ? "rotate-180" : ""
-          }`}
-        />
-      </button>
+          <button
+            onClick={() => setShowMore((v) => !v)}
+            aria-expanded={showMore}
+            className="flex items-center gap-1.5 mx-auto mt-13 mb-7 text-xs text-[var(--text)] hover:text-[var(--text-h)] transition-colors cursor-pointer"
+          >
+            <span className="mt-[1px]">
+              {showMore ? "Show less" : "Show more"}
+            </span>
+            <BsChevronDown
+              className={`transition-transform duration-300 ${
+                showMore ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+        </>
+      )}
     </div>
   );
 }
@@ -874,16 +967,25 @@ function BlogPostPage() {
 }
 
 function Blogs() {
+  const [year, setYear] = useState("all");
+  const postYear = (post: BlogPost) => new Date(post.date).getFullYear();
+  const years = [...new Set(BLOG_POSTS.map(postYear))].sort((a, b) => b - a);
+  const filtered =
+    year === "all"
+      ? BLOG_POSTS
+      : BLOG_POSTS.filter((post) => postYear(post) === Number(year));
+
   return (
     <div>
-      <div className="flex flex-col gap-1.5 mb-10">
-        <h3 className="text-xl text-[var(--text-h)]">My Blogs</h3>
-        <span className="text-sm text-[var(--text)] leading-relaxed">
-          Notes on AI, automation, and building systems that just work.
-        </span>
-      </div>
+      <SectionHeader
+        title="My Blogs"
+        subtitle="Notes on AI, automation, and building systems that just work."
+        years={years}
+        year={year}
+        onYearChange={setYear}
+      />
       <div className="flex flex-col gap-4">
-        {BLOG_POSTS.map((post) => (
+        {filtered.map((post) => (
           <BlogTile key={post.title} post={post} />
         ))}
       </div>
@@ -898,6 +1000,7 @@ type Review = {
   company: string;
   photo: string;
   linkedin: string;
+  year: number;
 };
 
 const REVIEWS: Review[] = [
@@ -910,6 +1013,7 @@ const REVIEWS: Review[] = [
     photo:
       "https://res.cloudinary.com/dni1vtbsv/image/upload/v1757231991/chadhilis.jpg",
     linkedin: "https://www.linkedin.com/in/cjhilis/",
+    year: 2025,
   },
   {
     quote:
@@ -920,6 +1024,7 @@ const REVIEWS: Review[] = [
     photo:
       "https://res.cloudinary.com/dni1vtbsv/image/upload/v1757497669/clarkrenojo.jpg",
     linkedin: "https://www.linkedin.com/in/clark-kent-renojo-848132233/",
+    year: 2025,
   },
   {
     quote:
@@ -930,6 +1035,7 @@ const REVIEWS: Review[] = [
     photo:
       "https://res.cloudinary.com/dni1vtbsv/image/upload/v1757567902/geraldpagsuyoin.jpg",
     linkedin: "https://www.linkedin.com/in/gerald-coderis-pagsuyoin/",
+    year: 2025,
   },
   {
     quote:
@@ -940,6 +1046,7 @@ const REVIEWS: Review[] = [
     photo:
       "https://res.cloudinary.com/dni1vtbsv/image/upload/v1757567362/leandrolacson.jpg",
     linkedin: "https://www.linkedin.com/in/leandro-lacson-09ba6b281/",
+    year: 2025,
   },
 ];
 
@@ -974,16 +1081,22 @@ function ReviewCard({ review }: { review: Review }) {
 }
 
 function Reviews() {
+  const [year, setYear] = useState("all");
+  const years = [...new Set(REVIEWS.map((r) => r.year))].sort((a, b) => b - a);
+  const filtered =
+    year === "all" ? REVIEWS : REVIEWS.filter((r) => r.year === Number(year));
+
   return (
     <div>
-      <div className="flex flex-col gap-1.5 mb-10">
-        <h3 className="text-xl text-[var(--text-h)]">My Reviews</h3>
-        <span className="text-sm text-[var(--text)] leading-relaxed">
-          Kind words from people I've worked with.
-        </span>
-      </div>
+      <SectionHeader
+        title="My Reviews"
+        subtitle="Kind words from people I've worked with."
+        years={years}
+        year={year}
+        onYearChange={setYear}
+      />
       <div className="grid grid-cols-2 gap-4">
-        {REVIEWS.map((review) => (
+        {filtered.map((review) => (
           <ReviewCard key={review.author} review={review} />
         ))}
       </div>
@@ -1189,6 +1302,181 @@ function TaglineMarquee() {
   );
 }
 
+type SearchEntry = {
+  tab: Tab;
+  title: string;
+  detail: string;
+  haystack: string;
+  slug?: string;
+};
+
+const SEARCH_INDEX: SearchEntry[] = [
+  ...WORK.map((job) => ({
+    tab: "Work" as Tab,
+    title: job.company,
+    detail: job.role,
+    haystack: [
+      job.company,
+      job.role,
+      job.period,
+      job.location,
+      ...job.points,
+      ...job.tech.map((t) => t.name),
+    ].join(" "),
+  })),
+  ...PROJECTS.map((project) => ({
+    tab: "Projects" as Tab,
+    title: project.title,
+    detail: project.description,
+    haystack: [
+      project.title,
+      project.description,
+      String(project.year),
+      ...project.tech.map((t) => t.name),
+    ].join(" "),
+  })),
+  ...BLOG_POSTS.map((post) => ({
+    tab: "Blogs" as Tab,
+    title: post.title,
+    detail: post.excerpt,
+    haystack: [post.title, post.excerpt, ...post.tags, ...post.content].join(
+      " "
+    ),
+    slug: slugify(post.title),
+  })),
+  ...REVIEWS.map((review) => ({
+    tab: "Reviews" as Tab,
+    title: review.author,
+    detail: `${review.position} · ${review.company}`,
+    haystack: [review.author, review.quote, review.position, review.company].join(
+      " "
+    ),
+  })),
+  ...TECH_STACK.flatMap((group) =>
+    group.items.map((tech) => ({
+      tab: "Techs" as Tab,
+      title: tech.name,
+      detail: group.category,
+      haystack: `${tech.name} ${group.category}`,
+    }))
+  ),
+];
+
+function SearchModal({
+  open,
+  onClose,
+  onSelect,
+}: {
+  open: boolean;
+  onClose: () => void;
+  onSelect: (entry: SearchEntry) => void;
+}) {
+  const [query, setQuery] = useState("");
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (open) {
+      setQuery("");
+      setActive(0);
+    }
+  }, [open]);
+
+  if (!open) return null;
+
+  const q = query.trim().toLowerCase();
+  const results = q
+    ? SEARCH_INDEX.filter((entry) =>
+        entry.haystack.toLowerCase().includes(q)
+      )
+        .sort((a, b) => {
+          const aTitle = a.title.toLowerCase().includes(q) ? 0 : 1;
+          const bTitle = b.title.toLowerCase().includes(q) ? 0 : 1;
+          return aTitle - bTitle;
+        })
+        .slice(0, 8)
+    : [];
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape") onClose();
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActive((i) => Math.min(i + 1, results.length - 1));
+    }
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActive((i) => Math.max(i - 1, 0));
+    }
+    if (e.key === "Enter" && results[active]) onSelect(results[active]);
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-black/50"
+      onClick={onClose}
+    >
+      <div
+        role="dialog"
+        aria-label="Search"
+        className="w-full max-w-xl rounded-lg border border-[var(--border)] bg-[var(--bg)] shadow-[var(--shadow)] overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--border)]">
+          <BsSearch className="shrink-0 text-[var(--text)]" />
+          <input
+            autoFocus
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setActive(0);
+            }}
+            onKeyDown={handleKeyDown}
+            placeholder="Search work, projects, blogs, reviews, techs…"
+            className="w-full bg-transparent text-sm text-[var(--text-h)] placeholder:text-[var(--text)] focus:outline-none"
+          />
+          <kbd className="shrink-0 text-[10px] text-[var(--text)] border border-[var(--border)] rounded px-1.5 py-0.5">
+            ESC
+          </kbd>
+        </div>
+        {q && (
+          <ul className="max-h-80 overflow-y-auto py-2">
+            {results.length === 0 && (
+              <li className="px-4 py-6 text-sm text-[var(--text)] text-center">
+                No results for “{query}”
+              </li>
+            )}
+            {results.map((entry, i) => (
+              <li key={`${entry.tab}-${entry.title}`}>
+                <button
+                  onClick={() => onSelect(entry)}
+                  onMouseEnter={() => setActive(i)}
+                  className={`w-full flex items-center gap-3 px-4 py-2.5 text-left cursor-pointer ${
+                    i === active ? "bg-[var(--social-bg)]" : ""
+                  }`}
+                >
+                  <span className="shrink-0 text-[var(--text)]">
+                    {TAB_ICONS[entry.tab]}
+                  </span>
+                  <span className="flex flex-col min-w-0">
+                    <span className="text-sm text-[var(--text-h)] truncate">
+                      {entry.title}
+                    </span>
+                    <span className="text-xs text-[var(--text)] truncate">
+                      {entry.detail}
+                    </span>
+                  </span>
+                  <span className="ml-auto shrink-0 text-[10px] text-[var(--text)] border border-[var(--border)] rounded px-1.5 py-0.5">
+                    {entry.tab}
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function Footer() {
   return (
     <footer className="w-full flex justify-center items-center relative border-t border-[var(--border)]">
@@ -1241,15 +1529,64 @@ function Footer() {
 function Home() {
   const { theme, toggle } = useTheme();
   const [activeTab, setActiveTab] = useState<Tab>("Me");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const navigate = useNavigate();
   const showButtons = activeTab === "Me";
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const handleSearchSelect = (entry: SearchEntry) => {
+    setSearchOpen(false);
+    if (entry.tab === "Blogs" && entry.slug) {
+      navigate(`/blog/${entry.slug}`);
+    } else {
+      setActiveTab(entry.tab);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)] flex flex-col items-center justify-start">
-      <nav className="w-full max-w-3xl flex justify-center items-center mt-4">
+      <SearchModal
+        open={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        onSelect={handleSearchSelect}
+      />
+      <nav className="w-full max-w-3xl flex justify-center items-center gap-3 mt-8 mb-4">
+        <button
+          onClick={() => setSearchOpen(true)}
+          aria-label="Search"
+          title="Search (Ctrl+K)"
+          className="flex items-center p-2 rounded-full text-sm font-medium border border-[var(--border)] bg-[var(--bg)] text-[var(--text-h)] hover:shadow-[var(--shadow)] transition-shadow duration-300 cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+        </button>
         <button
           onClick={toggle}
           aria-label="Toggle theme"
-          className="flex items-center p-2 m-4 rounded-full text-sm font-medium border border-[var(--border)] bg-[var(--bg)] text-[var(--text-h)] hover:shadow-[var(--shadow)] transition-shadow duration-300 cursor-pointer"
+          className="flex items-center p-2 rounded-full text-sm font-medium border border-[var(--border)] bg-[var(--bg)] text-[var(--text-h)] hover:shadow-[var(--shadow)] transition-shadow duration-300 cursor-pointer"
         >
           {theme === "dark" ? (
             <>
@@ -1288,6 +1625,31 @@ function Home() {
             </>
           )}
         </button>
+        <a
+          href="/rss.xml"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="RSS feed"
+          title="RSS feed"
+          className="flex items-center p-2 rounded-full text-sm font-medium border border-[var(--border)] bg-[var(--bg)] text-[var(--text-h)] hover:shadow-[var(--shadow)] transition-shadow duration-300 cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 11a9 9 0 0 1 9 9" />
+            <path d="M4 4a16 16 0 0 1 16 16" />
+            <circle cx="5" cy="19" r="1" />
+          </svg>
+        </a>
       </nav>
 
       <section

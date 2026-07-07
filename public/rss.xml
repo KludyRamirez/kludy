@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kludy Ramirez — Blog</title>
+    <link>https://kludy.vercel.app</link>
+    <description>Notes on AI, automation, and building systems that just work.</description>
+    <language>en</language>
+    <atom:link href="https://kludy.vercel.app/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I use Claude Code to automate the boring 80%</title>
+      <link>https://kludy.vercel.app/blog/how-i-use-claude-code-to-automate-the-boring-80</link>
+      <guid>https://kludy.vercel.app/blog/how-i-use-claude-code-to-automate-the-boring-80</guid>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 GMT</pubDate>
+      <description>A practical look at the agentic workflows I run daily — CRM audits, data migrations, pixel debugging — and where AI genuinely saves time (and where it still doesn't).</description>
+    </item>
+  </channel>
+</rss>
