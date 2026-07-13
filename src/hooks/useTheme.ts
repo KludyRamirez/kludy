@@ -17,6 +17,9 @@ export function useTheme() {
       root.classList.remove('dark')
     }
     localStorage.setItem('theme', theme)
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'dark' ? '#000000' : '#ffffff')
   }, [theme])
 
   const toggle = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'))

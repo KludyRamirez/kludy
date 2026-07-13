@@ -32,6 +32,21 @@
   box-sizing: border-box;
 }
 
+.search-flash {
+  border-radius: 8px;
+  animation: search-flash 1.8s ease-out;
+}
+
+@keyframes search-flash {
+  0%,
+  55% {
+    box-shadow: 0 0 0 2px var(--text-h);
+  }
+  100% {
+    box-shadow: 0 0 0 2px transparent;
+  }
+}
+
 .face-svg {
   color: var(--text-h);
   animation: face-float 5s ease-in-out infinite;
@@ -192,6 +207,20 @@
   50%,
   100% {
     opacity: 0;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  a,
+  button,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a:active,
+  button:active {
+    opacity: 0.65;
+    transition: opacity 0.1s ease;
   }
 }
 

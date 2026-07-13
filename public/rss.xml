@@ -7,6 +7,41 @@
     <language>en</language>
     <atom:link href="https://kludy.vercel.app/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Before you migrate the software, migrate the knowledge</title>
+      <link>https://kludy.vercel.app/blog/before-you-migrate-the-software-migrate-the-knowledge</link>
+      <guid>https://kludy.vercel.app/blog/before-you-migrate-the-software-migrate-the-knowledge</guid>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
+      <description>We are replacing Akia, the AI messaging tool our guest hosts live in. The hardest ticket was not code. It was writing down how the team actually works.</description>
+    </item>
+    <item>
+      <title>The week SEO became AEO</title>
+      <link>https://kludy.vercel.app/blog/the-week-seo-became-aeo</link>
+      <guid>https://kludy.vercel.app/blog/the-week-seo-became-aeo</guid>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
+      <description>People are asking AI about us instead of Googling us. One ClickUp ticket revealed our FAQ schema was invisible to AI crawlers. Fixing it took a schema rewrite and an MCP audit of every script on the site.</description>
+    </item>
+    <item>
+      <title>The bugs that never throw errors</title>
+      <link>https://kludy.vercel.app/blog/the-bugs-that-never-throw-errors</link>
+      <guid>https://kludy.vercel.app/blog/the-bugs-that-never-throw-errors</guid>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Before BoltOS went live I audited staging and filed every finding as a ticket. The two that stuck with me never raised an exception. One skipped a day of pricing. One quoted a guest in pesos.</description>
+    </item>
+    <item>
+      <title>One tech team, three companies</title>
+      <link>https://kludy.vercel.app/blog/one-tech-team-three-companies</link>
+      <guid>https://kludy.vercel.app/blog/one-tech-team-three-companies</guid>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
+      <description>My tickets come from three ClickUp spaces: Tech Co, Brand Co, and Ops Co. Same laptop, three different jobs. A resort turns out to be a complete tech education.</description>
+    </item>
+    <item>
+      <title>Taking BoltOS live, one ticket at a time</title>
+      <link>https://kludy.vercel.app/blog/taking-boltos-live-one-ticket-at-a-time</link>
+      <guid>https://kludy.vercel.app/blog/taking-boltos-live-one-ticket-at-a-time</guid>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+      <description>We moved our in-house PMS from staging to production this month. The milestone wasn't the migration itself. It was the hundred small tickets that turned a working system into one a real team could trust.</description>
+    </item>
+    <item>
       <title>How I use Claude Code to automate the boring 80%</title>
       <link>https://kludy.vercel.app/blog/how-i-use-claude-code-to-automate-the-boring-80</link>
       <guid>https://kludy.vercel.app/blog/how-i-use-claude-code-to-automate-the-boring-80</guid>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="1600" height="900" fill="#0d1117"/>
+  <!-- editor window -->
+  <rect x="120" y="80" width="1360" height="740" rx="18" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+  <!-- title bar -->
+  <circle cx="170" cy="124" r="10" fill="#ff5f57"/>
+  <circle cx="204" cy="124" r="10" fill="#febc2e"/>
+  <circle cx="238" cy="124" r="10" fill="#28c840"/>
+  <text x="800" y="132" text-anchor="middle" font-size="24" fill="#8b949e">faq-schema.html · Webflow custom code</text>
+  <line x1="120" y1="164" x2="1480" y2="164" stroke="#30363d" stroke-width="2"/>
+  <!-- diff row backgrounds -->
+  <rect x="122" y="226" width="1356" height="48" fill="#f85149" opacity="0.12"/>
+  <rect x="122" y="322" width="1356" height="336" fill="#3fb950" opacity="0.10"/>
+  <!-- line numbers -->
+  <g font-size="26" fill="#484f58">
+    <text x="176" y="210">1</text>
+    <text x="176" y="258">2</text>
+    <text x="176" y="306">3</text>
+    <text x="176" y="354">4</text>
+    <text x="176" y="402">5</text>
+    <text x="176" y="450">6</text>
+    <text x="176" y="498">7</text>
+    <text x="176" y="546">8</text>
+    <text x="176" y="594">9</text>
+    <text x="164" y="642">10</text>
+    <text x="164" y="690">11</text>
+  </g>
+  <!-- code -->
+  <g font-size="26">
+    <text x="240" y="210" fill="#8b949e">&lt;head&gt;</text>
+    <text x="240" y="258" fill="#f85149">-   &lt;script src="faqpageschema-2.0.0.js"&gt;&lt;/script&gt;</text>
+    <text x="240" y="306" fill="#484f58">    // injected at runtime, invisible to AI crawlers</text>
+    <text x="240" y="354" fill="#3fb950">+   &lt;script type="application/ld+json"&gt;</text>
+    <text x="240" y="402" fill="#3fb950">+   { "@type": "FAQPage",</text>
+    <text x="240" y="450" fill="#3fb950">+     "mainEntity": [</text>
+    <text x="240" y="498" fill="#3fb950">+       { "name": "Where is BOLT FARM located?" },</text>
+    <text x="240" y="546" fill="#3fb950">+       { "name": "Is BOLT FARM adults-only?" },</text>
+    <text x="240" y="594" fill="#3fb950">+       { "name": "How far from Chattanooga?" } ] }</text>
+    <text x="240" y="642" fill="#3fb950">+   &lt;/script&gt;</text>
+    <text x="240" y="690" fill="#8b949e">&lt;/head&gt;</text>
+  </g>
+  <!-- footer badges -->
+  <rect x="240" y="730" width="420" height="52" rx="26" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="450" y="764" text-anchor="middle" font-size="24" fill="#3fb950">✓ visible to AI crawlers</text>
+  <rect x="690" y="730" width="540" height="52" rx="26" fill="#0d1117" stroke="#30363d" stroke-width="2"/>
+  <text x="960" y="764" text-anchor="middle" font-size="24" fill="#8b949e">122 scripts audited via Webflow MCP</text>
+</svg>
