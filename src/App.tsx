@@ -261,6 +261,17 @@ function SectionHeader({
 
 type FocusTarget = { id: string; n: number };
 
+function LogoMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" aria-hidden="true" className={className}>
+      <circle cx="32" cy="32" r="32" fill="var(--text-h)" />
+      <rect x="19" y="17" width="7" height="30" rx="1.5" fill="var(--bg)" />
+      <path d="M38 17 L45.5 17 L37.5 31.5 L30 31.5 Z" fill="var(--bg)" />
+      <path d="M33 33 L40.5 33 L49 47 L41.5 47 Z" fill="var(--bg)" />
+    </svg>
+  );
+}
+
 function focusAnchorEl(id: string, delay: number) {
   window.setTimeout(() => {
     const el = document.getElementById(id);
@@ -269,6 +280,31 @@ function focusAnchorEl(id: string, delay: number) {
     el.classList.add("search-flash");
     window.setTimeout(() => el.classList.remove("search-flash"), 1900);
   }, delay);
+}
+
+function ShowMoreButton({
+  expanded,
+  onClick,
+  className = "",
+}: {
+  expanded: boolean;
+  onClick: () => void;
+  className?: string;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      aria-expanded={expanded}
+      className={`flex items-center gap-1.5 mx-auto py-1.5 px-4 rounded-full text-xs border border-[var(--border)] bg-[var(--btn-bg)] text-[var(--text)] hover:text-[var(--text-h)] hover:shadow-[var(--shadow)] transition-all duration-300 cursor-pointer ${className}`}
+    >
+      <span className="mt-[1px]">{expanded ? "Show less" : "Show more"}</span>
+      <BsChevronDown
+        className={`transition-transform duration-300 ${
+          expanded ? "rotate-180" : ""
+        }`}
+      />
+    </button>
+  );
 }
 
 function AboutMe() {
@@ -341,18 +377,11 @@ function AboutMe() {
         </div>
       </div>
 
-      <button
+      <ShowMoreButton
+        expanded={showMore}
         onClick={() => setShowMore((v) => !v)}
-        aria-expanded={showMore}
-        className="flex items-center gap-1.5 mx-auto mt-13 mb-7 text-xs text-[var(--text)] hover:text-[var(--text-h)] transition-colors cursor-pointer"
-      >
-        <span className="mt-[1px]">{showMore ? "Show less" : "Show more"}</span>
-        <BsChevronDown
-          className={`transition-transform duration-300 ${
-            showMore ? "rotate-180" : ""
-          }`}
-        />
-      </button>
+        className="mt-10"
+      />
     </>
   );
 }
@@ -376,9 +405,7 @@ const WORK: Job[] = [
       "Major contributor to BoltOS, a custom booking and dynamic pricing platform, with Claude Code as the primary engineering tool — turning specs into production reservation, role-based access, and guest-experience features that support $9.4 million in booking volume and improved guest booking efficiency by 86%.",
       "Architected and deployed a server-side Google Tag Manager infrastructure on Google Cloud Run with Cloudflare DNS, boosting data tracking reliability across GA4 and Meta Pixel by 80% while eliminating client-side data loss.",
       "Engineered agentic QA workflows in Claude Code to diagnose and resolve a critical Facebook Pixel conflict between PixelFlow and HubSpot, eliminating double-counted Purchase events and restoring accurate attribution for $2.5M in annual ad spend.",
-      "Audited 272 complex CRM workflows using AI-assisted analysis and rebuilt them into automated deal pipelines integrating Zapier, Aircall, and CallRail — improving data accuracy and accelerating sales velocity by 90%.",
-      "Migrated legacy guest-messaging and operations trackers into BoltOS with AI-driven data-parity checks, and built internal Claude Code plugins that automate the team's support-ticket workflows.",
-    ],
+      "Audited 272 complex CRM workflows using AI-assisted analysis and rebuilt them into automated deal pipelines integrating Zapier, Aircall, and CallRail — improving data accuracy and accelerating sales velocity by 90%.",    ],
     tech: [
       { name: "Claude Code", icon: <SiClaude /> },
       { name: "AWS", icon: <FaAws /> },
@@ -843,20 +870,11 @@ function Projects({ focus }: { focus?: FocusTarget | null }) {
             </div>
           </div>
 
-          <button
+          <ShowMoreButton
+            expanded={showMore}
             onClick={() => setShowMore((v) => !v)}
-            aria-expanded={showMore}
-            className="flex items-center gap-1.5 mx-auto mt-13 mb-7 text-xs text-[var(--text)] hover:text-[var(--text-h)] transition-colors cursor-pointer"
-          >
-            <span className="mt-[1px]">
-              {showMore ? "Show less" : "Show more"}
-            </span>
-            <BsChevronDown
-              className={`transition-transform duration-300 ${
-                showMore ? "rotate-180" : ""
-              }`}
-            />
-          </button>
+            className="mt-10"
+          />
         </>
       )}
     </div>
@@ -1531,18 +1549,11 @@ function TechStack({ focus }: { focus?: FocusTarget | null }) {
         <TechGroup key={group.category} group={group} />
       ))}
 
-      <button
+      <ShowMoreButton
+        expanded={showMore}
         onClick={() => setShowMore((v) => !v)}
-        aria-expanded={showMore}
-        className="flex items-center gap-1.5 self-center text-xs text-[var(--text)] hover:text-[var(--text-h)] transition-colors cursor-pointer"
-      >
-        <span className="mt-[1px]">{showMore ? "Show less" : "Show more"}</span>
-        <BsChevronDown
-          className={`transition-transform duration-300 ${
-            showMore ? "rotate-180" : ""
-          }`}
-        />
-      </button>
+        className="mt-3"
+      />
 
       <div
         className={`grid transition-all duration-500 ease-in-out ${
@@ -1559,39 +1570,6 @@ function TechStack({ focus }: { focus?: FocusTarget | null }) {
             ))}
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-const TAGLINE = [
-  "BPI",
-  "AIA",
-  "GrowthOps",
-  "Asia Pacific Digital",
-  "GrowthOps Asia",
-  "Flexicon Solutions Inc.",
-  "Bolt Farm Treehouse",
-];
-
-function TaglineMarquee() {
-  return (
-    <div className="marquee mt-10 mb-8 w-full text-[var(--text-h)]">
-      <div className="marquee-track">
-        {[0, 1].map((group) => (
-          <div
-            key={group}
-            className="flex items-center"
-            aria-hidden={group === 1}
-          >
-            {TAGLINE.map((phrase) => (
-              <span key={phrase} className="flex items-center">
-                <span className="px-6 text-sm">{phrase}</span>
-                <span className="h-1 w-1 rounded-full bg-current opacity-50" />
-              </span>
-            ))}
-          </div>
-        ))}
       </div>
     </div>
   );
@@ -1852,8 +1830,26 @@ function RssPage() {
 
 function Footer() {
   return (
-    <footer className="w-full flex justify-center items-center relative border-t border-[var(--border)]">
-      <div className="w-full max-w-3xl flex flex-wrap justify-between items-center gap-4 my-9 px-5 md:px-0">
+    <footer className="w-full flex flex-col items-center relative md:border-t border-[var(--border)]">
+      <div className="w-full max-w-3xl md:hidden flex flex-col gap-8 my-9 px-5 text-[var(--btn-text)]">
+        <div className="flex flex-col items-start gap-1.5">
+          <div className="text-2xl font-bold">Kludy S. Ramirez</div>
+          <div className="text-sm ml-0.5">
+            AI Ops Engineer @ Bolt Farm Treehouse
+          </div>
+          <div className="mt-1.5 w-full">
+            <ContactButtons />
+          </div>
+        </div>
+        <div className="flex flex-col items-start gap-1.5">
+          <div className="text-2xl font-bold">Bolt Farm Treehouse</div>
+          <div className="text-sm">Whitwell, TN, United States</div>
+          <div className="mt-1.5 w-full">
+            <SocialButtons />
+          </div>
+        </div>
+      </div>
+      <div className="w-full max-w-3xl max-md:hidden flex flex-wrap justify-between items-center gap-4 my-9 px-5 md:px-0">
         <div className="flex items-center gap-2 text-sm text-[var(--text)]">
           <span>Kludy Ramirez</span>
           <div className="flex items-center gap-2 ml-2 pl-4 border-l border-[var(--border)]">
@@ -1941,7 +1937,7 @@ function Home() {
           aria-label="Home"
           className="md:hidden flex items-center gap-2"
         >
-          <img src="/logo-mark.svg" alt="" className="h-6 w-6" />
+          <LogoMark className="h-6 w-6" />
           <span className="text-sm font-semibold text-[var(--text-h)]">
             Kludy
           </span>
@@ -2039,7 +2035,7 @@ function Home() {
 
       <section
         id="profile"
-        className="flex flex-col md:flex-row md:justify-center gap-6 md:gap-0 max-w-3xl w-full px-5 md:px-0 max-md:mt-6 text-[var(--btn-text)]"
+        className="max-md:hidden flex flex-col md:flex-row md:justify-center gap-6 md:gap-0 max-w-3xl w-full px-5 md:px-0 max-md:mt-6 text-[var(--btn-text)]"
       >
         <div className="w-full md:w-[50%] flex flex-col justify-start items-start gap-1.5">
           <div className="text-2xl font-bold">Kludy S. Ramirez</div>
@@ -2101,7 +2097,7 @@ function Home() {
           ))}
         </div>
 
-        <div className="mt-8">
+        <div className="mt-8 pb-12">
           {activeTab === "Me" && <AboutMe />}
           {activeTab === "Techs" && <TechStack focus={focusTarget} />}
           {activeTab === "Work" && <WorkExperience focus={focusTarget} />}
@@ -2109,10 +2105,9 @@ function Home() {
           {activeTab === "Blogs" && <Blogs />}
           {activeTab === "Reviews" && <Reviews focus={focusTarget} />}
         </div>
-        <TaglineMarquee />
       </section>
       <div
-        className={`max-w-3xl w-full px-5 md:px-0 grid transition-all duration-500 ease-in-out ${
+        className={`max-md:hidden max-w-3xl w-full px-5 md:px-0 grid transition-all duration-500 ease-in-out ${
           showButtons
             ? "grid-rows-[0fr] opacity-0 mt-0 pointer-events-none"
             : "grid-rows-[1fr] opacity-100 mb-10 mt-2"
