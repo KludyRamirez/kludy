@@ -19,6 +19,7 @@ import {
   BsFacebook,
   BsFolder2Open,
   BsGithub,
+  BsRecordCircle,
   BsInstagram,
   BsJournal,
   BsPerson,
@@ -125,18 +126,74 @@ const TAB_ICONS: Record<Tab, React.ReactNode> = {
   Reviews: <BsStar />,
 };
 
-function ContactButtons() {
+// Swap these for Cal.com/Calendly event links to offer real time slots
+const BOOKING = [
+  {
+    label: "Quick chat",
+    detail: "15 min intro call",
+    url: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Quick%20chat%20with%20Kludy%20(15%20min)&details=15-minute%20intro%20call%20with%20Kludy%20Ramirez.&add=kludyramirez.pro%40gmail.com",
+  },
+  {
+    label: "Deep dive",
+    detail: "45 min working session",
+    url: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Deep%20dive%20with%20Kludy%20(45%20min)&details=45-minute%20working%20session%20with%20Kludy%20Ramirez.&add=kludyramirez.pro%40gmail.com",
+  },
+];
+
+function ScheduleCallButton() {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      {/* TODO: replace with a real booking link (e.g. Calendly) */}
-      <a
-        href="mailto:kludyramirez.pro@gmail.com?subject=Schedule%20a%20call"
+    <div className="relative">
+      {open && (
+        <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+      )}
+      <button
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="menu"
         className="flex justify-center items-center gap-2 py-1.5 px-3 bg-[var(--btn-bg)] border border-[var(--border)] text-xs cursor-pointer rounded max-md:py-2"
       >
         <BsTelephone />
         <span className="ml-0.5">Schedule a Call</span>
-        <BsChevronRight />
-      </a>
+        <BsChevronDown
+          className={`transition-transform duration-300 ${
+            open ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      {open && (
+        <div
+          role="menu"
+          className="absolute left-0 top-full mt-2 z-50 w-52 flex flex-col rounded-lg border border-[var(--border)] bg-[var(--bg)] overflow-hidden shadow-[var(--shadow)]"
+        >
+          {BOOKING.map((option) => (
+            <a
+              key={option.label}
+              role="menuitem"
+              href={option.url}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setOpen(false)}
+              className="flex flex-col gap-0.5 px-4 py-3 hover:bg-[var(--btn-bg)] transition-colors"
+            >
+              <span className="text-xs text-[var(--text-h)]">
+                {option.label}
+              </span>
+              <span className="text-xs text-[var(--text)]">
+                {option.detail}
+              </span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ContactButtons() {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <ScheduleCallButton />
       <a
         href="https://www.linkedin.com/in/kludyramirez/"
         target="_blank"
@@ -308,23 +365,57 @@ function ShowMoreButton({
 }
 
 function AboutMe() {
-  const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(true);
+
+  const tiles = [
+    {
+      name: "Off the clock",
+      icon: <BsRecordCircle />,
+      headline: "build for fun",
+      subtitle: "curiosity on tap",
+      desc: "I experiment with new AI tools and turn small daily annoyances into automations nobody asked for.",
+      meta: "New tools · Side automations · Weekend builds",
+    },
+    {
+      name: "What I'm looking for",
+      icon: <BsRecordCircle />,
+      headline: "lead or co-found",
+      subtitle: "high-impact products",
+      desc: "A senior AI leadership role, or the right co-founder to start something new, building with teams that welcome the chaos of scaling.",
+      meta: "Leadership · Co-founder · 0 to 1",
+    },
+    {
+      name: "What I bring",
+      icon: <BsRecordCircle />,
+      headline: "agent infrastructure",
+      subtitle: "memory and distributed AI",
+      desc: "Deep experience in agent infrastructure, memory systems, and distributed AI, put to work on products built to scale.",
+      meta: "Agents · Memory · Distributed AI",
+    },
+    {
+      name: "How I build",
+      icon: <BsRecordCircle />,
+      headline: "spec-first, agentic",
+      subtitle: "automate the boring 80%",
+      desc: "I ship features spec-first, automate data flows, and hand the repetitive work to agentic workflows so the system just runs.",
+      meta: "Spec-first · Agentic QA · Automation",
+    },
+  ];
 
   return (
     <>
       <div className="flex flex-col items-start gap-5">
         <span className="text-xl">Who am I</span>
         <span className="text-sm leading-relaxed">
-          I'm an AI Ops Engineer at Bolt Farm Treehouse, where Claude Code is my
-          primary engineering tool. I take scattered, disconnected tools such as
-          booking, CRM, tracking, guest comms and turn them into one smooth,
-          high-performing system: shipping features spec-first, automating data
-          flows, and replacing repetitive work with agentic workflows. My goal
-          is technology that just works behind the scenes, so the business can
-          grow faster and smarter.
+          I'm an AI Ops Engineer at Bolt Farm Treehouse. I take scattered,
+          disconnected tools such as booking, CRM, tracking, guest comms and
+          turn them into one smooth, high-performing system: shipping features
+          spec-first, automating data flows, and replacing repetitive work with
+          agentic workflows. My goal is technology that just works behind the
+          scenes, so the business can grow faster and smarter.
         </span>
       </div>
-      <div className="flex flex-col items-start gap-5 mt-5">
+      <div className="flex flex-col items-start gap-5 mt-7">
         <span className="text-xl">How I think</span>
         <span className="text-sm leading-relaxed">
           My brain is hardwired to solve problems. Whether I'm eliminating
@@ -332,17 +423,6 @@ function AboutMe() {
           isn't just work ethic, it's a compulsion.
         </span>
       </div>
-      <div className="flex flex-col items-start gap-5 mt-5">
-        <span className="text-xl">What I'm looking for</span>
-        <span className="text-sm leading-relaxed">
-          I'm looking for a senior AI leadership role, or the right co-founder
-          to start something new. I want to build high-impact products with
-          serious teams that welcome the chaos of scaling. I bring deep
-          experience in agent infrastructure, memory systems, and distributed
-          AI, plus strong opinions on when to build and when to buy.
-        </span>
-      </div>
-
       <div
         className={`grid transition-all duration-500 ease-in-out ${
           showMore
@@ -360,18 +440,36 @@ function AboutMe() {
               </span>
               <span className="text-sm leading-relaxed">Paragraph…</span>
             </div> */}
-            <div className="flex flex-col items-start gap-5">
-              <span className="text-xl">More about me</span>
-              <span className="text-sm leading-relaxed">
-                I got my start building a student affairs system in Valenzuela
-                and corporate websites for AIA in Makati, then grew from intern
-                to a trusted engineer on regulated gaming platforms at Flexicon.
-                Working remotely from Manila with a US team has made me
-                obsessive about clear communication and letting shipped work
-                speak across time zones. Off the clock, I experiment with new AI
-                tools and turn small daily annoyances into automations nobody
-                asked for.
-              </span>
+            <div className="flex flex-col items-start gap-4 w-full pt-9">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                {tiles.map((tile) => (
+                  <div
+                    key={tile.name}
+                    className="rounded-2xl border border-[var(--border)] bg-[var(--btn-bg)] p-4 sm:p-5"
+                  >
+                    <div className="flex flex-col gap-3">
+                      <div className="flex flex-col gap-1">
+                        <span className="text-2xl font-bold tracking-tight text-[var(--text-h)]">
+                          {tile.headline}
+                        </span>
+                        <span className="text-xs text-[var(--text)]">
+                          {tile.subtitle}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-[var(--text-h)]">
+                        {tile.icon}
+                        <span className="text-sm">{tile.name}</span>
+                      </div>
+                      <p className="text-sm leading-relaxed text-[var(--text)]">
+                        {tile.desc}
+                      </p>
+                      <span className="text-xs text-[var(--text)] opacity-70">
+                        {tile.meta}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -380,7 +478,7 @@ function AboutMe() {
       <ShowMoreButton
         expanded={showMore}
         onClick={() => setShowMore((v) => !v)}
-        className="mt-10"
+        className="mt-11"
       />
     </>
   );
@@ -405,7 +503,8 @@ const WORK: Job[] = [
       "Major contributor to BoltOS, a custom booking and dynamic pricing platform, with Claude Code as the primary engineering tool — turning specs into production reservation, role-based access, and guest-experience features that support $9.4 million in booking volume and improved guest booking efficiency by 86%.",
       "Architected and deployed a server-side Google Tag Manager infrastructure on Google Cloud Run with Cloudflare DNS, boosting data tracking reliability across GA4 and Meta Pixel by 80% while eliminating client-side data loss.",
       "Engineered agentic QA workflows in Claude Code to diagnose and resolve a critical Facebook Pixel conflict between PixelFlow and HubSpot, eliminating double-counted Purchase events and restoring accurate attribution for $2.5M in annual ad spend.",
-      "Audited 272 complex CRM workflows using AI-assisted analysis and rebuilt them into automated deal pipelines integrating Zapier, Aircall, and CallRail — improving data accuracy and accelerating sales velocity by 90%.",    ],
+      "Audited 272 complex CRM workflows using AI-assisted analysis and rebuilt them into automated deal pipelines integrating Zapier, Aircall, and CallRail — improving data accuracy and accelerating sales velocity by 90%.",
+    ],
     tech: [
       { name: "Claude Code", icon: <SiClaude /> },
       { name: "AWS", icon: <FaAws /> },
