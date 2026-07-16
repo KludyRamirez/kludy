@@ -7,6 +7,13 @@
     <language>en</language>
     <atom:link href="https://kludy.vercel.app/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Least privilege is a moving target</title>
+      <link>https://kludy.vercel.app/blog/least-privilege-is-a-moving-target</link>
+      <guid>https://kludy.vercel.app/blog/least-privilege-is-a-moving-target</guid>
+      <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Half my recent board was access requests: grant this role, scope that one, take another away. The ticket that reframed it asked me to move everyone to read-only except the one person still collecting payments.</description>
+    </item>
+    <item>
       <title>Before you migrate the software, migrate the knowledge</title>
       <link>https://kludy.vercel.app/blog/before-you-migrate-the-software-migrate-the-knowledge</link>
       <guid>https://kludy.vercel.app/blog/before-you-migrate-the-software-migrate-the-knowledge</guid>

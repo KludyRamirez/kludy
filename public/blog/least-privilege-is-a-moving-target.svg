@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="1600" height="900" fill="#0d1117"/>
+  <rect x="120" y="80" width="1360" height="740" rx="18" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+  <circle cx="170" cy="124" r="10" fill="#ff5f57"/>
+  <circle cx="204" cy="124" r="10" fill="#febc2e"/>
+  <circle cx="238" cy="124" r="10" fill="#28c840"/>
+  <text x="800" y="132" text-anchor="middle" font-size="24" fill="#8b949e">boltos · /admin/access/roles</text>
+  <line x1="120" y1="164" x2="1480" y2="164" stroke="#30363d" stroke-width="2"/>
+  <!-- table header -->
+  <g font-size="22" fill="#484f58">
+    <text x="180" y="220">ROLE</text>
+    <text x="640" y="220">SCOPE</text>
+    <text x="1180" y="220">ACCESS</text>
+  </g>
+  <line x1="160" y1="240" x2="1440" y2="240" stroke="#30363d" stroke-width="2"/>
+
+  <!-- row: housekeeping -->
+  <g font-size="24">
+    <text x="180" y="300" fill="#c9d1d9">Housekeeping</text>
+    <text x="640" y="300" fill="#8b949e">Reservations, Calendar</text>
+  </g>
+  <rect x="1180" y="272" width="196" height="40" rx="8" fill="#21262d" stroke="#30363d" stroke-width="1.5"/>
+  <text x="1278" y="300" text-anchor="middle" font-size="21" fill="#8b949e">READ-ONLY</text>
+
+  <!-- row: therapists -->
+  <g font-size="24">
+    <text x="180" y="384" fill="#c9d1d9">Therapists</text>
+    <text x="640" y="384" fill="#8b949e">Service Catalog</text>
+  </g>
+  <rect x="1180" y="356" width="196" height="40" rx="8" fill="#21262d" stroke="#30363d" stroke-width="1.5"/>
+  <text x="1278" y="384" text-anchor="middle" font-size="21" fill="#8b949e">READ-ONLY</text>
+
+  <!-- row: concierge -->
+  <g font-size="24">
+    <text x="180" y="468" fill="#c9d1d9">Concierge</text>
+    <text x="640" y="468" fill="#8b949e">Folios</text>
+  </g>
+  <rect x="1180" y="440" width="150" height="40" rx="8" fill="#3b2e12" stroke="#9e6a03" stroke-width="1.5"/>
+  <text x="1255" y="468" text-anchor="middle" font-size="21" fill="#d29922">REOPEN</text>
+
+  <!-- row: highlighted write access -->
+  <rect x="150" y="524" width="1290" height="64" rx="8" fill="#28c840" opacity="0.12"/>
+  <rect x="150" y="524" width="6" height="64" rx="3" fill="#3fb950"/>
+  <g font-size="24">
+    <text x="180" y="564" fill="#c9d1d9">Payment follow-up</text>
+    <text x="640" y="564" fill="#8b949e">SNT · until balances collected</text>
+  </g>
+  <rect x="1180" y="536" width="150" height="40" rx="8" fill="#12331b" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="1255" y="564" text-anchor="middle" font-size="21" fill="#3fb950">WRITE</text>
+
+  <!-- row: everyone else -->
+  <g font-size="24">
+    <text x="180" y="652" fill="#6e7681">Everyone else</text>
+    <text x="640" y="652" fill="#6e7681">SNT</text>
+  </g>
+  <rect x="1180" y="624" width="196" height="40" rx="8" fill="#1a1f26" stroke="#30363d" stroke-width="1.5"/>
+  <text x="1278" y="652" text-anchor="middle" font-size="21" fill="#6e7681">READ-ONLY</text>
+
+  <line x1="160" y1="708" x2="1440" y2="708" stroke="#30363d" stroke-width="2"/>
+  <text x="180" y="756" font-size="22" fill="#484f58">5 roles</text>
+  <text x="360" y="756" font-size="22" fill="#484f58">1 write</text>
+  <text x="800" y="756" text-anchor="middle" font-size="22" fill="#6e7681">least privilege · scoped to the business, not the job title</text>
+</svg>

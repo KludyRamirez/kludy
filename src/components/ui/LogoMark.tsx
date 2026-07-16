@@ -1,0 +1,10 @@
+export function LogoMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" aria-hidden="true" className={className}>
+      <circle cx="32" cy="32" r="32" fill="var(--text-h)" />
+      <rect x="19" y="17" width="7" height="30" rx="1.5" fill="var(--bg)" />
+      <path d="M38 17 L45.5 17 L37.5 31.5 L30 31.5 Z" fill="var(--bg)" />
+      <path d="M33 33 L40.5 33 L49 47 L41.5 47 Z" fill="var(--bg)" />
+    </svg>
+  );
+}
