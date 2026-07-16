@@ -3,6 +3,17 @@ import type { Review } from "../types";
 export const REVIEWS: Review[] = [
   {
     quote:
+      "Kludy is easily one of the best full stack developers I've worked with, strong across React, Vue, Next, and Node. His attention to frontend detail is pixel-perfect, and his cybersecurity knowledge makes him even more valuable. Any team would be lucky to have him.",
+    author: "Steven Cabugos",
+    position: "Full-Stack Software Engineer",
+    company: "Flexicon Solutions Inc.",
+    photo:
+      "https://ui-avatars.com/api/?name=Steven+Cabugos&size=128&background=0D1117&color=E6EDF3",
+    linkedin: "#",
+    year: 2026,
+  },
+  {
+    quote:
       "We can meet our clients' expectations on time since Kludy assisted us in performing the assignment successfully and efficiently.",
     author: "Chad Jordan Hilis",
     position: "Senior Project Manager",
