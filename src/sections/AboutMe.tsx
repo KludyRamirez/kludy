@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BsRecordCircle } from "react-icons/bs";
 import { ShowMoreButton } from "../components/ui/ShowMoreButton";
 
 export function AboutMe() {
@@ -8,7 +7,6 @@ export function AboutMe() {
   const tiles = [
     {
       name: "Off the clock",
-      icon: <BsRecordCircle />,
       headline: "build for fun",
       subtitle: "curiosity on tap",
       desc: "I experiment with new AI tools and turn small daily annoyances into automations nobody asked for.",
@@ -16,7 +14,6 @@ export function AboutMe() {
     },
     {
       name: "What I'm looking for",
-      icon: <BsRecordCircle />,
       headline: "lead or co-found",
       subtitle: "high-impact products",
       desc: "A senior AI leadership role, or the right co-founder to start something new, building with teams that welcome the chaos of scaling.",
@@ -24,7 +21,6 @@ export function AboutMe() {
     },
     {
       name: "What I bring",
-      icon: <BsRecordCircle />,
       headline: "agent infrastructure",
       subtitle: "memory and distributed AI",
       desc: "Deep experience in agent infrastructure, memory systems, and distributed AI, put to work on products built to scale.",
@@ -32,7 +28,6 @@ export function AboutMe() {
     },
     {
       name: "How I build",
-      icon: <BsRecordCircle />,
       headline: "spec-first, agentic",
       subtitle: "automate the boring 80%",
       desc: "I ship features spec-first, automate data flows, and hand the repetitive work to agentic workflows so the system just runs.",
@@ -83,7 +78,7 @@ export function AboutMe() {
                 {tiles.map((tile) => (
                   <div
                     key={tile.name}
-                    className="rounded-2xl border border-[var(--border)] bg-[var(--btn-bg)] p-4 sm:p-5"
+                    className="rounded-lg border border-[var(--border)] bg-[var(--btn-bg)] p-4 sm:p-5"
                   >
                     <div className="flex flex-col gap-3">
                       <div className="flex flex-col gap-1">
@@ -95,7 +90,6 @@ export function AboutMe() {
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-[var(--text-h)]">
-                        {tile.icon}
                         <span className="text-sm">{tile.name}</span>
                       </div>
                       <p className="text-sm leading-relaxed text-[var(--text)]">
@@ -108,6 +102,16 @@ export function AboutMe() {
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="flex flex-col items-start gap-5 pt-5">
+              <span className="text-xl">How I work with people</span>
+              <span className="text-sm leading-relaxed">
+                I move fast, but never alone. I write things down so the team
+                stays in sync, share context early so no one is blocked, and I'd
+                rather over-communicate than let a decision quietly drift. Good
+                systems are built by people who trust each other, and I try to
+                be someone worth trusting.
+              </span>
             </div>
             <div className="flex flex-col items-start gap-5 pt-5">
               <span className="text-xl">The bottom line</span>
