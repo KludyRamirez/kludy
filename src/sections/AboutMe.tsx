@@ -48,7 +48,7 @@ export function AboutMe() {
           scenes, so the business can grow faster and smarter.
         </span>
       </div>
-      <div className="flex flex-col items-start gap-5 mt-7">
+      <div className="flex flex-col items-start gap-5 pt-7">
         <span className="text-xl">How I think</span>
         <span className="text-sm leading-relaxed">
           My brain is hardwired to solve problems. Whether I'm eliminating
@@ -65,62 +65,53 @@ export function AboutMe() {
         aria-hidden={!showMore}
       >
         <div className="overflow-hidden min-h-0">
-          <div className="flex flex-col gap-5 pt-5">
-            {/* TODO: add new paragraphs here — follow the same block shape:
-            <div className="flex flex-col items-start gap-5">
-              <span className="text-2xl font-bold font-[Cormorant_Garamond]">
-                Heading
-              </span>
-              <span className="text-sm leading-relaxed">Paragraph…</span>
-            </div> */}
-            <div className="flex flex-col items-start gap-4 w-full pt-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-                {tiles.map((tile) => (
-                  <div
-                    key={tile.name}
-                    className="rounded-lg border border-[var(--border)] bg-[var(--btn-bg)] p-4 sm:p-5"
-                  >
-                    <div className="flex flex-col gap-3">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-2xl font-bold tracking-tight text-[var(--text-h)]">
-                          {tile.headline}
-                        </span>
-                        <span className="text-xs text-[var(--text)]">
-                          {tile.subtitle}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 text-[var(--text-h)]">
-                        <span className="text-sm">{tile.name}</span>
-                      </div>
-                      <p className="text-sm leading-relaxed text-[var(--text)]">
-                        {tile.desc}
-                      </p>
-                      <span className="text-xs text-[var(--text)] opacity-70">
-                        {tile.meta}
+          <div className="flex flex-col items-start gap-4 w-full pt-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+              {tiles.map((tile) => (
+                <div
+                  key={tile.name}
+                  className="rounded-lg border border-[var(--border)] bg-[var(--btn-bg)] p-4 sm:p-5"
+                >
+                  <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-2xl font-bold tracking-tight text-[var(--text-h)]">
+                        {tile.headline}
+                      </span>
+                      <span className="text-xs text-[var(--text)]">
+                        {tile.subtitle}
                       </span>
                     </div>
+                    <div className="flex items-center gap-2 text-[var(--text-h)]">
+                      <span className="text-sm">{tile.name}</span>
+                    </div>
+                    <p className="text-sm leading-relaxed text-[var(--text)]">
+                      {tile.desc}
+                    </p>
+                    <span className="text-xs text-[var(--text)] opacity-70">
+                      {tile.meta}
+                    </span>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-            <div className="flex flex-col items-start gap-5 pt-5">
-              <span className="text-xl">How I work with people</span>
-              <span className="text-sm leading-relaxed">
-                I move fast, but never alone. I write things down so the team
-                stays in sync, share context early so no one is blocked, and I'd
-                rather over-communicate than let a decision quietly drift. Good
-                systems are built by people who trust each other, and I try to
-                be someone worth trusting.
-              </span>
-            </div>
-            <div className="flex flex-col items-start gap-5 pt-5">
-              <span className="text-xl">The bottom line</span>
-              <span className="text-sm leading-relaxed">
-                Give me a tangled system and a clear goal, and I turn it into
-                something that runs itself. If you're building at the edge of AI
-                and want someone who ships, let's talk.
-              </span>
-            </div>
+          </div>
+          <div className="flex flex-col items-start gap-5 pt-10">
+            <span className="text-xl">How I work with people</span>
+            <span className="text-sm leading-relaxed">
+              I move fast, but never alone. I write things down so the team
+              stays in sync, share context early so no one is blocked, and I'd
+              rather over-communicate than let a decision quietly drift. Good
+              systems are built by people who trust each other, and I try to be
+              someone worth trusting.
+            </span>
+          </div>
+          <div className="flex flex-col items-start gap-5 pt-7">
+            <span className="text-xl">The bottom line</span>
+            <span className="text-sm leading-relaxed">
+              Give me a tangled system and a clear goal, and I turn it into
+              something that runs itself. If you're building at the edge of AI
+              and want someone who ships, let's talk.
+            </span>
           </div>
         </div>
       </div>
