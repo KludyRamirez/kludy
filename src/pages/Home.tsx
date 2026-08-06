@@ -4,12 +4,7 @@ import { useTheme } from "../hooks/useTheme";
 import { TABS, TAB_ICONS } from "../data/tabs";
 import type { FocusTarget, SearchEntry, Tab } from "../types";
 import { LogoMark } from "../components/ui/LogoMark";
-import {
-  MoonIcon,
-  RssIcon,
-  SearchIcon,
-  SunIcon,
-} from "../components/ui/icons";
+import { MoonIcon, RssIcon, SearchIcon, SunIcon } from "../components/ui/icons";
 import { ContactButtons } from "../components/ContactButtons";
 import { SocialButtons } from "../components/SocialButtons";
 import { Footer } from "../components/Footer";
@@ -102,7 +97,7 @@ export default function Home() {
         <div className="w-full md:w-[50%] flex flex-col justify-start items-start gap-1.5">
           <div className="text-2xl font-bold">Kludy S. Ramirez</div>
           <div className="text-sm ml-0.5">
-            AI Ops Engineer @ Bolt Farm Treehouse
+            AI Engineer @ Bolt Farm Treehouse
           </div>
           <div
             className={`grid transition-all duration-500 ease-in-out ${

@@ -40,7 +40,7 @@ export function AboutMe() {
       <div className="flex flex-col items-start gap-5">
         <span className="text-xl">Who am I</span>
         <span className="text-sm leading-relaxed">
-          I'm an AI Ops Engineer at Bolt Farm Treehouse. I take scattered,
+          I'm an AI Engineer at Bolt Farm Treehouse. I take scattered,
           disconnected tools such as booking, CRM, tracking, guest comms and
           turn them into one smooth, high-performing system: shipping features
           spec-first, automating data flows, and replacing repetitive work with

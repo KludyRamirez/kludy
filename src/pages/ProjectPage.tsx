@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import {
   BsArrowLeft,
   BsArrowUpRight,
+  BsChevronLeft,
   BsChevronRight,
   BsGithub,
 } from "react-icons/bs";
@@ -13,7 +14,11 @@ import { slugify } from "../lib/slugify";
 
 export default function ProjectPage() {
   const { slug } = useParams();
-  const project = PROJECTS.find((p) => slugify(p.title) === slug);
+  const index = PROJECTS.findIndex((p) => slugify(p.title) === slug);
+  const project = index === -1 ? undefined : PROJECTS[index];
+  const prev = index > 0 ? PROJECTS[index - 1] : null;
+  const next =
+    index !== -1 && index < PROJECTS.length - 1 ? PROJECTS[index + 1] : null;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -102,6 +107,43 @@ export default function ProjectPage() {
                 path={`/projects/${slugify(project.title)}`}
               />
             </div>
+            {(prev || next) && (
+              <nav
+                aria-label="Project navigation"
+                className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3 mt-10 pt-8 border-t border-[var(--border)]"
+              >
+                {prev && (
+                  <Link
+                    to={`/projects/${slugify(prev.title)}`}
+                    className="group flex flex-col gap-1.5 p-4 bg-[var(--btn-bg)] border border-[var(--border)] rounded hover:border-[var(--text)] transition-colors"
+                  >
+                    <span className="flex items-center gap-1.5 text-xs text-[var(--text)] tracking-wide">
+                      <BsChevronLeft />
+                      <span className="mt-[1px]">Previous</span>
+                    </span>
+                    <span className="text-sm text-[var(--text-h)] leading-snug">
+                      {prev.title}
+                    </span>
+                  </Link>
+                )}
+                {next && (
+                  <Link
+                    to={`/projects/${slugify(next.title)}`}
+                    className={`group flex flex-col items-end gap-1.5 p-4 bg-[var(--btn-bg)] border border-[var(--border)] rounded hover:border-[var(--text)] transition-colors ${
+                      prev ? "" : "sm:col-start-2"
+                    }`}
+                  >
+                    <span className="flex items-center gap-1.5 text-xs text-[var(--text)] tracking-wide">
+                      <span className="mt-[1px]">Next</span>
+                      <BsChevronRight />
+                    </span>
+                    <span className="text-sm text-[var(--text-h)] leading-snug text-right">
+                      {next.title}
+                    </span>
+                  </Link>
+                )}
+              </nav>
+            )}
           </>
         ) : (
           <div className="flex flex-col items-start gap-3 mt-10">

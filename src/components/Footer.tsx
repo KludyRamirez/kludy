@@ -10,7 +10,7 @@ export function Footer() {
         <div className="flex flex-col items-start gap-1.5">
           <div className="text-2xl font-bold">Kludy S. Ramirez</div>
           <div className="text-sm ml-0.5">
-            AI Ops Engineer @ Bolt Farm Treehouse
+            AI Engineer @ Bolt Farm Treehouse
           </div>
           <div className="mt-1.5 w-full">
             <ContactButtons />

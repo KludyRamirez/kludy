@@ -14,16 +14,6 @@ function ProjectCard({ project }: { project: Project }) {
       id={`project-${slugify(project.title)}`}
       className="flex flex-col rounded-lg border border-[var(--border)] bg-[var(--btn-bg)] overflow-hidden transition-transform duration-200 ease-out hover:-translate-y-1 scroll-mt-24"
     >
-      <Link
-        to={`/projects/${slugify(project.title)}`}
-        className="block border-b border-[var(--border)]"
-      >
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full aspect-video object-cover object-top"
-        />
-      </Link>
       <div className="flex flex-col gap-3 p-5">
         <div className="flex justify-between items-start">
           <span className="text-xs text-[var(--text)] tracking-wide">
@@ -106,7 +96,7 @@ export function Projects({ focus }: { focus?: FocusTarget | null }) {
         year={year}
         onYearChange={setYear}
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         {visible.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}
@@ -123,7 +113,7 @@ export function Projects({ focus }: { focus?: FocusTarget | null }) {
             aria-hidden={!showMore}
           >
             <div className="overflow-hidden min-h-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+              <div className="grid grid-cols-1 gap-4 pt-4">
                 {more.map((project) => (
                   <ProjectCard key={project.title} project={project} />
                 ))}
