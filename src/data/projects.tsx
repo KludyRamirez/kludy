@@ -2,30 +2,23 @@ import { FaJava } from "react-icons/fa";
 import {
   SiAkamai,
   SiBootstrap,
-  SiCss,
   SiDocker,
   SiElixir,
   SiExpress,
   SiFlydotio,
-  SiGit,
-  SiHtml5,
-  SiJavascript,
   SiJquery,
   SiMongodb,
   SiMui,
   SiNextdotjs,
   SiNodedotjs,
-  SiNuxt,
   SiPhoenixframework,
   SiPostgresql,
   SiReact,
   SiRedux,
-  SiSass,
   SiStripe,
   SiTailwindcss,
   SiTypescript,
   SiVercel,
-  SiVuedotjs,
 } from "react-icons/si";
 import { TbBrandAdobe, TbComponents } from "react-icons/tb";
 import type { Project, Tech } from "../types";
@@ -48,13 +41,6 @@ const AIA_TECH: Tech[] = [
   { name: "ReactJS", icon: <SiReact /> },
   { name: "Bootstrap", icon: <SiBootstrap /> },
   { name: "Akamai", icon: <SiAkamai /> },
-];
-
-const GALATIC_TECH: Tech[] = [
-  { name: "HTML", icon: <SiHtml5 /> },
-  { name: "CSS", icon: <SiCss /> },
-  { name: "SASS", icon: <SiSass /> },
-  { name: "Javascript", icon: <SiJavascript /> },
 ];
 
 export const PROJECTS: Project[] = [
@@ -92,17 +78,6 @@ export const PROJECTS: Project[] = [
       { name: "Stripe", icon: <SiStripe /> },
       { name: "Vercel", icon: <SiVercel /> },
     ],
-  },
-  {
-    title: "Mathematrix",
-    year: 2024,
-    description:
-      "This web application is a thesis project designed for students with an interest in mathematics, particularly in rational functions.",
-    image:
-      "https://res.cloudinary.com/dni1vtbsv/image/upload/mathematrix-proj-photo.png",
-    url: "https://mathematrix-client.vercel.app",
-    github: "https://github.com/KludyRamirez/mathematrix-client",
-    tech: MERN_TECH,
   },
   {
     title: "BPI-AIA",
@@ -144,72 +119,5 @@ export const PROJECTS: Project[] = [
     url: "https://plv-osa-reprimand-hub.vercel.app",
     github: "https://github.com/KludyRamirez/plv-osa-reprimand-hub",
     tech: MERN_TECH,
-  },
-  {
-    title: "MLAC",
-    year: 2024,
-    description:
-      "A web-based application for MLAC parents to manage their children's weekly therapy attendance.",
-    image:
-      "https://res.cloudinary.com/dni1vtbsv/image/upload/mlac-proj-photo.png",
-    url: "https://plv-osa-reprimand-hub.vercel.app",
-    github: "https://github.com/KludyRamirez/plv-osa-reprimand-hub",
-    tech: MERN_TECH,
-  },
-  {
-    title: "APD - GrowthOps Technical Exam",
-    year: 2023,
-    description:
-      "Technical assessment at GrowthOps, building components and retrieving data from a web service.",
-    image:
-      "https://res.cloudinary.com/dni1vtbsv/image/upload/apd-growthops-proj-photo.png",
-    url: "https://techassessmentgrowthops.web.app",
-    github: "https://github.com/KludyRamirez/tech-assessment-growthops-kludy",
-    tech: [
-      { name: "ReactJS", icon: <SiReact /> },
-      { name: "Bootstrap", icon: <SiBootstrap /> },
-      { name: "Git", icon: <SiGit /> },
-      { name: "MUI", icon: <SiMui /> },
-    ],
-  },
-  {
-    title: "Galatic Technical Exam 1",
-    year: 2024,
-    description:
-      "This is the first part of the technical exam from Galatic. The purpose of this exam is to assess my front-end development skills and principles.",
-    image:
-      "https://res.cloudinary.com/dni1vtbsv/image/upload/galatic-proj-photo.svg",
-    url: "https://galatic-first-card-assessment.netlify.app",
-    github:
-      "https://github.com/KludyRamirez/Galatic-technical-assessment/tree/main/Galatic-first-card",
-    tech: GALATIC_TECH,
-  },
-  {
-    title: "Galatic Technical Exam 2",
-    year: 2024,
-    description:
-      "This is the second part of the technical exam from Galatic. The purpose of this exam is to assess my front-end development skills and principles.",
-    image:
-      "https://res.cloudinary.com/dni1vtbsv/image/upload/galatic-proj-photo.svg",
-    url: "https://galatic-second-card-assessment.netlify.app",
-    github:
-      "https://github.com/KludyRamirez/Galatic-technical-assessment/tree/main/Galatic-second-card",
-    tech: GALATIC_TECH,
-  },
-  {
-    title: "Registration Page Project",
-    year: 2024,
-    description:
-      "A registration page built on Nuxt 2 for Galatic Events Corporation.",
-    image:
-      "https://res.cloudinary.com/dni1vtbsv/image/upload/registration-page-proj-photo.png",
-    url: "https://vue-nuxt-2-registration-form.vercel.app",
-    github: "https://github.com/KludyRamirez/vue-nuxt-2-registration-form",
-    tech: [
-      { name: "VueJS", icon: <SiVuedotjs /> },
-      { name: "NuxtJS", icon: <SiNuxt /> },
-      { name: "SASS", icon: <SiSass /> },
-      { name: "ElementUI", icon: <TbComponents /> },
-    ],
   },
 ];
