@@ -5,7 +5,7 @@ import { SocialButtons } from "./SocialButtons";
 
 export function Footer() {
   return (
-    <footer className="w-full flex flex-col items-center relative md:border-t border-[var(--border)]">
+    <footer className="w-full flex flex-col items-center relative">
       <div className="w-full max-w-3xl md:hidden flex flex-col gap-8 my-9 px-5 text-[var(--btn-text)]">
         <div className="flex flex-col items-start gap-1.5">
           <div className="text-2xl font-bold">Kludy S. Ramirez</div>
@@ -24,7 +24,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="w-full max-w-3xl max-md:hidden flex flex-wrap justify-between items-center gap-4 my-9 px-5 md:px-0">
+      <div className="w-full max-w-3xl max-md:hidden flex flex-wrap justify-between items-center gap-4 mt-9 px-6 py-6 border-t border-x rounded-t-xl border-[var(--border)]">
         <div className="flex items-center gap-2 text-sm text-[var(--text)]">
           <span>Kludy Ramirez</span>
           <div className="flex items-center gap-2 ml-2 pl-4 border-l border-[var(--border)]">

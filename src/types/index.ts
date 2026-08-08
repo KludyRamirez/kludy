@@ -23,6 +23,8 @@ export type Project = {
   tech: Tech[];
 };
 
+export type BlogSection = { heading: string; body: string };
+
 export type BlogPost = {
   title: string;
   excerpt: string;
@@ -30,7 +32,7 @@ export type BlogPost = {
   readTime: string;
   tags: string[];
   image: string;
-  content: string[];
+  content: BlogSection[];
 };
 
 export type Review = {

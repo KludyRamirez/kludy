@@ -113,18 +113,36 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full md:w-[50%] flex flex-col justify-start items-start md:items-end gap-1.5">
-          <div className="text-2xl font-bold">Bolt Farm Treehouse</div>
-          <div className="text-sm">Whitwell, TN, United States</div>
           <div
             className={`grid transition-all duration-500 ease-in-out w-full ${
               showButtons
-                ? "grid-rows-[1fr] opacity-100 mt-1.5"
-                : "grid-rows-[0fr] opacity-0 mt-0 pointer-events-none"
+                ? "grid-rows-[1fr] opacity-100"
+                : "grid-rows-[0fr] opacity-0 pointer-events-none"
             }`}
             aria-hidden={!showButtons}
           >
             <div className="overflow-hidden min-h-0">
-              <SocialButtons />
+              <div className="flex flex-col items-start md:items-end gap-1.5">
+                <div className="text-2xl font-bold">Bolt Farm Treehouse</div>
+                <div className="text-sm">Whitwell, TN, United States</div>
+                <div className="mt-1.5 w-full">
+                  <SocialButtons />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className={`grid transition-all duration-500 ease-in-out w-full ${
+              showButtons
+                ? "grid-rows-[0fr] opacity-0 pointer-events-none"
+                : "grid-rows-[1fr] opacity-100"
+            }`}
+            aria-hidden={showButtons}
+          >
+            <div className="overflow-hidden min-h-0">
+              <div className="pb-4">
+                <ContactButtons className="w-full flex-wrap md:flex-wrap-reverse justify-start md:justify-end" />
+              </div>
             </div>
           </div>
         </div>
@@ -154,7 +172,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="mt-8 pb-12">
+        <div className="mt-8 pb-4">
           {activeTab === "Me" && <AboutMe />}
           {activeTab === "Techs" && <TechStack focus={focusTarget} />}
           {activeTab === "Work" && <WorkExperience focus={focusTarget} />}
@@ -163,27 +181,6 @@ export default function Home() {
           {activeTab === "Reviews" && <Reviews focus={focusTarget} />}
         </div>
       </section>
-      <div
-        className={`max-md:hidden max-w-3xl w-full px-5 md:px-0 grid transition-all duration-500 ease-in-out ${
-          showButtons
-            ? "grid-rows-[0fr] opacity-0 mt-0 pointer-events-none"
-            : "grid-rows-[1fr] opacity-100 mb-10 mt-2"
-        }`}
-        aria-hidden={showButtons}
-      >
-        <div className="overflow-hidden min-h-0">
-          <div className="text-[var(--btn-text)]">
-            <div className="flex flex-col md:flex-row md:justify-center gap-6 md:gap-0">
-              <div className="w-full md:w-[50%] flex flex-col items-start">
-                <ContactButtons />
-              </div>
-              <div className="w-full md:w-[50%] flex flex-col items-start md:items-end">
-                <SocialButtons />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <Footer />
       <nav
         aria-label="Sections"

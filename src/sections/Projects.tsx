@@ -73,8 +73,8 @@ export function Projects({ focus }: { focus?: FocusTarget | null }) {
   const years = [...new Set(PROJECTS.map((p) => p.year))].sort((a, b) => b - a);
   const filtered =
     year === "all" ? PROJECTS : PROJECTS.filter((p) => p.year === Number(year));
-  const visible = filtered.slice(0, 4);
-  const more = filtered.slice(4);
+  const visible = filtered.slice(0, 3);
+  const more = filtered.slice(3);
 
   useEffect(() => {
     if (!focus || !focus.id.startsWith("project-")) return;
@@ -91,7 +91,7 @@ export function Projects({ focus }: { focus?: FocusTarget | null }) {
     <div>
       <SectionHeader
         title="My Projects"
-        subtitle="Things I've designed, built, and shipped — from thesis work to production sites."
+        subtitle="Things I've designed, built, and shipped, from thesis work to production sites."
         years={years}
         year={year}
         onYearChange={setYear}

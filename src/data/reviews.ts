@@ -3,7 +3,7 @@ import type { Review } from "../types";
 export const REVIEWS: Review[] = [
   {
     quote:
-      "Kludy is easily one of the best full stack developers I've worked with, strong across React, Vue, Next, and Node. His attention to frontend detail is pixel-perfect, and his cybersecurity knowledge makes him even more valuable. Any team would be lucky to have him.",
+      "One of the best full stack developers I've worked with, strong across React, Vue, Next, and Node. His frontend detail is pixel-perfect and his cybersecurity depth makes him even more valuable.",
     author: "Steven Cabugos",
     position: "Full-Stack Software Engineer",
     company: "Flexicon Solutions Inc.",
@@ -25,7 +25,7 @@ export const REVIEWS: Review[] = [
   },
   {
     quote:
-      "Kludy as a software engineer, he shows great passion for his work, dedication to excellence, and consistently completes tasks on time while fostering strong teamwork.",
+      "As a software engineer, Kludy shows great passion and dedication to excellence, completing tasks on time while fostering strong teamwork.",
     author: "Clark Kent Renojo",
     position: "Software Engineer",
     company: "Flexicon Solutions Inc.",
@@ -36,7 +36,7 @@ export const REVIEWS: Review[] = [
   },
   {
     quote:
-      "Kludy is a highly regarded friend with strong expertise in IT, excelling at solving complex technical problems and delivering solutions under tight time constraints.",
+      "Kludy has strong IT expertise, excelling at complex technical problems and delivering solutions under tight time constraints.",
     author: "Gerald Pagsuyoin",
     position: "Front-end Developer",
     company: "Flexicon Solutions Inc.",

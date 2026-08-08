@@ -59,9 +59,13 @@ function ScheduleCallButton() {
   );
 }
 
-export function ContactButtons() {
+export function ContactButtons({
+  className = "flex-wrap",
+}: {
+  className?: string;
+}) {
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className={`flex items-center gap-2 ${className}`}>
       <ScheduleCallButton />
       <a
         href="https://www.linkedin.com/in/kludyramirez/"

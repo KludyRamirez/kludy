@@ -3,18 +3,26 @@ import { BsArrowUpRight } from "react-icons/bs";
 import { slugify } from "../lib/slugify";
 import type { BlogPost } from "../types";
 
-export function BlogTile({ post }: { post: BlogPost }) {
+export function BlogTile({
+  post,
+  showImage = true,
+}: {
+  post: BlogPost;
+  showImage?: boolean;
+}) {
   return (
     <Link
       to={`/blog/${slugify(post.title)}`}
       className="group flex flex-col rounded-lg border border-[var(--border)] bg-[var(--btn-bg)] overflow-hidden transition-transform duration-200 ease-out hover:-translate-y-1"
     >
-      <img
-        src={post.image}
-        alt={post.title}
-        loading="lazy"
-        className="w-full aspect-video object-cover border-b border-[var(--border)]"
-      />
+      {showImage && (
+        <img
+          src={post.image}
+          alt={post.title}
+          loading="lazy"
+          className="w-full aspect-video object-cover border-b border-[var(--border)]"
+        />
+      )}
       <div className="flex flex-col gap-3 p-5">
         <div className="flex justify-between items-start">
           <div className="flex flex-wrap items-center gap-x-2 text-xs text-[var(--text)] tracking-wide">

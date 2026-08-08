@@ -37,9 +37,12 @@ export const SEARCH_INDEX: SearchEntry[] = [
     tab: "Blogs" as Tab,
     title: post.title,
     detail: post.excerpt,
-    haystack: [post.title, post.excerpt, ...post.tags, ...post.content].join(
-      " ",
-    ),
+    haystack: [
+      post.title,
+      post.excerpt,
+      ...post.tags,
+      ...post.content.flatMap((s) => [s.heading, s.body]),
+    ].join(" "),
     slug: slugify(post.title),
   })),
   ...REVIEWS.map((review) => ({
